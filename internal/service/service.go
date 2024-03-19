@@ -24,6 +24,9 @@ type Service interface {
 	InsertRecipe(recipe entity.NewRecipe) (string, error)
 	DeleteRecipe(recipe entity.DeleteRecipe) (string, error)
 	GetRecipes() (string, error)
+
+	GeneralClientReport(client entity.GeneralClientReport) (string, error)
+	RecipesPetReport(pet entity.RecipesPetReport) (string, error)
 }
 
 type MyService struct {

@@ -16,8 +16,21 @@ import (
 type Handlers interface {
 	StartServer(e *echo.Echo, address string) error
 	registerRoutes(e *echo.Echo)
-
+	deleteClient(c echo.Context) error
+	deleteMedicine(c echo.Context) error
+	deletePet(c echo.Context) error
+	deleteRecipe(c echo.Context) error
+	getClients(c echo.Context) error
+	getMedicines(c echo.Context) error
+	getPets(c echo.Context) error
+	getRecipes(c echo.Context) error
 	insertClient(c echo.Context) error
+	insertMedicine(c echo.Context) error
+	insertPet(c echo.Context) error
+	insertRecipe(c echo.Context) error
+	updateClient(c echo.Context) error
+	updateMedicine(c echo.Context) error
+	updatePet(c echo.Context) error
 }
 
 type MyHandlers struct {

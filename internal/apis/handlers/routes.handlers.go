@@ -25,4 +25,9 @@ func (h *MyHandlers) registerRoutes(e *echo.Echo) {
 	recipes.POST("/insert-recipe/", h.insertRecipe)
 	recipes.POST("/delete-recipe/", h.deleteRecipe)
 	recipes.GET("/get-recipes/", h.getRecipes)
+
+	reports := e.Group("/reports")
+	reports.POST("/client-report/", h.generalClientReport)
+	reports.POST("/pet-report/", h.recipesPetReport)
+
 }

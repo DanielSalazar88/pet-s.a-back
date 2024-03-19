@@ -33,6 +33,9 @@ type Repository interface {
 	InsertRecipe(infoRecipe map[string]interface{}) (string, error)
 	DeleteRecipe(infoRecipe map[string]interface{}) (string, error)
 	GetRecipes() (string, error)
+
+	GeneralClientReport(infoReplace map[string]string) (string, error)
+	RecipesPetReport(infoReplace map[string]interface{}) (string, error)
 }
 
 type MyRepository struct {

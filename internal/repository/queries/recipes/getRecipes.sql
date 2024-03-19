@@ -5,7 +5,7 @@ SELECT JSON_ARRAYAGG(
         'dosis', m2.dosis,
         'descripcion', m2.descripcion,
         'nombre_mascota', m.nombre,
-        'cliente_cedula', m.cliente_cedula
+        'cedula_cliente', m.cliente_cedula
     )
 ) AS resultado
 FROM Receta r 
