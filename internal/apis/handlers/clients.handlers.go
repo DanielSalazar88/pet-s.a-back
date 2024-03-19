@@ -77,3 +77,17 @@ func (h *MyHandlers) updateClient(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]string{"Message": result})
 }
+
+func (h *MyHandlers) getClients(c echo.Context) error {
+
+	result, err := h.Service.GetClients()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{"Message": err.Error()})
+	}
+
+	log.Println("#########################################################")
+	log.Println("Cliente Obtenidos Correctamente!")
+	log.Println("#########################################################")
+
+	return c.JSON(http.StatusOK, map[string]string{"Message": result})
+}

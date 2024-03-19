@@ -9,6 +9,7 @@ var (
 	errInsertPet = "error insertando la mascota"
 	errDeletePet = "error eliminando la mascota"
 	errUpdatePet = "error actualizando la mascota"
+	errGetPets   = "error obteniendo las mascotas"
 )
 
 func (r *MyRepository) InsertPet(infoPet map[string]interface{}) (string, error) {
@@ -69,4 +70,20 @@ func (r *MyRepository) UpdatePet(infoPet map[string]interface{}) (string, error)
 	}
 
 	return "OK", nil
+}
+
+func (r *MyRepository) GetPets() (string, error) {
+	sqlFile, err := content.ReadFile("queries/pets/getPets.sql")
+	if err != nil {
+		return "", fmt.Errorf("%s : %s", errReadSqlFIle, err)
+	}
+
+	query := string(sqlFile)
+
+	result, err := r.DB.ExecMysqlQuery(query)
+	if err != nil {
+		return "", fmt.Errorf("%s : %s", errGetPets, err)
+	}
+
+	return result, nil
 }

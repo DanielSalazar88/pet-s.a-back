@@ -28,3 +28,12 @@ func (s *MyService) DeleteRecipe(recipe entity.DeleteRecipe) (string, error) {
 
 	return result, nil
 }
+
+func (s *MyService) GetRecipes() (string, error) {
+	result, err := s.Repository.GetRecipes()
+	if err != nil {
+		return "", err
+	}
+
+	return result, err
+}

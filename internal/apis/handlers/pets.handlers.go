@@ -80,3 +80,17 @@ func (h *MyHandlers) updatePet(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]string{"Message": result})
 
 }
+
+func (h *MyHandlers) getPets(c echo.Context) error {
+
+	result, err := h.Service.GetPets()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{"Message": err.Error()})
+	}
+
+	log.Println("#########################################################")
+	log.Println("Mascotas Obtenidas Correctamente!")
+	log.Println("#########################################################")
+
+	return c.JSON(http.StatusOK, map[string]string{"Message": result})
+}

@@ -48,3 +48,12 @@ func (s *MyService) UpdatePet(pet entity.UpdatePet) (string, error) {
 
 	return result, nil
 }
+
+func (s *MyService) GetPets() (string, error) {
+	result, err := s.Repository.GetPets()
+	if err != nil {
+		return "", err
+	}
+
+	return result, err
+}

@@ -50,3 +50,12 @@ func (s *MyService) UpdateClient(client entity.NewClient) (string, error) {
 
 	return result, nil
 }
+
+func (s *MyService) GetClients() (string, error) {
+	result, err := s.Repository.GetClients()
+	if err != nil {
+		return "", err
+	}
+
+	return result, err
+}

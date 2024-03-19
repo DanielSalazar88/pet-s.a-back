@@ -45,3 +45,12 @@ func (s *MyService) UpdateMedicine(medicine entity.UpdateMedicine) (string, erro
 
 	return result, nil
 }
+
+func (s *MyService) GetMedicines() (string, error) {
+	result, err := s.Repository.GetMedicines()
+	if err != nil {
+		return "", err
+	}
+
+	return result, err
+}

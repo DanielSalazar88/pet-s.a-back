@@ -54,3 +54,17 @@ func (h *MyHandlers) deleteRecipe(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]string{"Message": result})
 }
+
+func (h *MyHandlers) getRecipes(c echo.Context) error {
+
+	result, err := h.Service.GetRecipes()
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{"Message": err.Error()})
+	}
+
+	log.Println("#########################################################")
+	log.Println("Recetas Obtenidas Correctamente!")
+	log.Println("#########################################################")
+
+	return c.JSON(http.StatusOK, map[string]string{"Message": result})
+}

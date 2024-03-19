@@ -81,3 +81,19 @@ func (r *MyRepository) UpdateClient(infoReplace map[string]string) (string, erro
 
 	return "Ok", nil
 }
+
+func (r *MyRepository) GetClients() (string, error) {
+	sqlFile, err := content.ReadFile("queries/clients/getClients.sql")
+	if err != nil {
+		return "", fmt.Errorf("%s : %s", errReadSqlFIle, err)
+	}
+
+	query := string(sqlFile)
+
+	result, err := r.DB.ExecMysqlQuery(query)
+	if err != nil {
+		return "", fmt.Errorf("%s : %s", errInsertClient, err)
+	}
+
+	return result, nil
+}
