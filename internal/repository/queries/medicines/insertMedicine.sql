@@ -4,7 +4,7 @@ INSERT INTO Medicamento (
     dosis
     )
 VALUES (
-    "nombre_replace",
-    "descripcion_replace"
-    "dosis_replace"
+    'nombre_replace',
+    'descripcion_replace',
+    'dosis_replace'
     );

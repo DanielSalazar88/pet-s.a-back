@@ -17,13 +17,28 @@ func (s *MyService) InsertMedicine(medicine entity.NewMedicine) (string, error) 
 	return result, nil
 }
 
-func (s *MyService) InsertRecipe(recipe entity.NewRecipe) (string, error) {
+func (s *MyService) DeleteMedicine(medicine entity.DeleteMedicine) (string, error) {
 	values := map[string]interface{}{
-		"id_mascota_replace":     recipe.IDMascota,
-		"id_medicamento_replace": recipe.IDMedicamento,
+		"replace_id": medicine.ID,
 	}
 
-	result, err := s.Repository.InsertRecipe(values)
+	result, err := s.Repository.DeleteMedicine(values)
+	if err != nil {
+		return "", err
+	}
+
+	return result, err
+}
+
+func (s *MyService) UpdateMedicine(medicine entity.UpdateMedicine) (string, error) {
+	values := map[string]interface{}{
+		"id_replace":          medicine.ID,
+		"nombre_replace":      medicine.Nombre,
+		"descripcion_replace": medicine.Descripcion,
+		"dosis_replace":       medicine.Dosis,
+	}
+
+	result, err := s.Repository.UpdateMedicine(values)
 	if err != nil {
 		return "", err
 	}
