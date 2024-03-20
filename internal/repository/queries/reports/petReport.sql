@@ -1,21 +1,24 @@
 SELECT
-    JSON_ARRAYAGG(
-        JSON_OBJECT(
-            'nombre_mascota',
-            m3.nombre,
-            'raza_mascota',
-            m3.raza,
-            'peso_mascota',
-            m3.peso,
-            'edad_mascota',
-            m3.edad,
-            'recetas',
-            recetas_json
-        )
+    IFNULL(
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'nombre_mascota',
+                m3.nombre,
+                'raza_mascota',
+                COALESCE(m3.raza, ''),
+                'peso_mascota',
+                COALESCE(m3.peso, ''),
+                'edad_mascota',
+                COALESCE(m3.edad, ''),
+                'recetas',
+                COALESCE(recetas_json, JSON_ARRAY())
+            )
+        ),
+        JSON_ARRAY()
     ) AS resultado
 FROM
     Mascota m3
-    INNER JOIN (
+    LEFT JOIN (
         SELECT
             r.mascota_id,
             JSON_ARRAYAGG(
@@ -23,9 +26,9 @@ FROM
                     'medicamento',
                     m4.nombre,
                     'descripcion_receta',
-                    m4.descripcion,
+                    COALESCE(m4.descripcion, ''),
                     'dosis_receta',
-                    m4.dosis
+                    COALESCE(m4.dosis, '')
                 )
             ) AS recetas_json
         FROM

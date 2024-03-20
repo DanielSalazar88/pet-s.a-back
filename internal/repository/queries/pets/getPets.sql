@@ -14,4 +14,4 @@ SELECT JSON_ARRAYAGG(
         )
 ) AS resultado
 FROM Mascota
-INNER JOIN Cliente c on c.cedula;
+INNER JOIN Cliente c on c.cedula = cliente_cedula;

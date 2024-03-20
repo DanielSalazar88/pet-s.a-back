@@ -8,12 +8,12 @@ SELECT
             'apellidos_cliente',
             c.apellidos,
             'mascotas',
-            mascotas_json
+            IFNULL(mascotas_json, JSON_ARRAY())
         )
     ) AS resultado
 FROM
     Cliente c
-    INNER JOIN (
+    LEFT JOIN (
         SELECT
             m.cliente_cedula,
             JSON_ARRAYAGG(
@@ -21,9 +21,9 @@ FROM
                     'nombre_mascota',
                     m.nombre,
                     'descripcion_receta',
-                    m2.descripcion,
+                    IFNULL(m2.descripcion, ''),
                     'dosis_receta',
-                    m2.dosis
+                    IFNULL(m2.dosis, '')
                 )
             ) AS mascotas_json
         FROM
